@@ -1,0 +1,114 @@
+A model is a Dart class that represents your data structure
+for example, a note
+class Note {
+  int? id;
+  String title;
+  String content;
+
+  Note({this.id, required this.title, required this.content});
+}
+✅ Why Use a Model?
+1. Structure Your Data Clearly
+Models help you define the shape of the data. 
+
+2. Convert Between Dart & Database
+You use the model to convert data:
+
+From Dart object → Map (for storing in the database)
+
+From Map → Dart object (for reading from the database)
+
+// Convert to Map
+Map<String, dynamic> toMap() {
+  return {
+    'id': id,
+    'title': title,
+    'content': content,
+  };
+}
+
+// Convert from Map
+factory Note.fromMap(Map<String, dynamic> map) {
+  return Note(
+    id: map['id'],
+    title: map['title'],
+    content: map['content'],
+  );
+}
+3. Cleaner Code
+Without models, your code would be messy with maps everywhere like:
+
+Map<String, dynamic> note = {
+  'title': 'Note 1',
+  'content': 'This is note content'
+};
+Doing this everywhere makes it hard to maintain.
+
+4. Easy Updates and Expansion
+
+
+model
+
+1st create class
+then constructor if we call constructor then the value iside
+ class is required
+
+it is then convert to map
+ data is stored in table so it is like that
+'name' : name
+coulum : row
+
+to get the data we convert from map
+
+
+
+//model
+class UserModel {
+
+//declare variable
+final String title;
+final String description;
+
+//constructor
+UserModel({required this.title,required this.description});
+
+//convert to map
+Map<String,dynamic> toMap(){
+  return{
+'title':title,
+'description':description,
+
+  };
+}
+
+//convert from map
+factory UserModel.fromMap(Map<String,dynamic> map){
+  return UserModel(
+    title: map['title'],
+     description: map['description']
+     );
+}
+}
+
+
+Main Aim of Singleton in Flutter (or Dart)
+To make sure only one object of a class is created and shared everywhere.
+
+You use the same instance everywhere in your app.
+Imagine your app needs a DatabaseHelper.
+You don’t want to open multiple database connections.
+So you use a singleton, and everyone shares the same database object.
+If you accidentally make many copies of those, it can:
+
+Use more memory
+Cause bugs
+Make your app slower or break things
+
+🧠 Think of it Like:
+🗂️ A notebook that everyone in your team writes in.
+You don’t want 5 notebooks.
+You want 1 shared notebook.
+So everyone adds/reads from the same one.
+
+That’s what a Singleton does — one shared object for all.
+
